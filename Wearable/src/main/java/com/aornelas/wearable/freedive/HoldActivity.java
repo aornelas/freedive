@@ -3,7 +3,6 @@ package com.aornelas.wearable.freedive;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.wearable.view.WearableListView;
 import android.view.LayoutInflater;
@@ -11,30 +10,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-public class MainActivity extends Activity implements WearableListView.ClickListener {
+public class HoldActivity extends Activity implements WearableListView.ClickListener {
 
-    private static final String DEBUG_TAG = "DEBUG.MainActivity";
-
-    public static final String EXTRA_WEEK_NUMBER = "com.andres.pushups.WEEK_NUMBER";
-    public static final String EXTRA_DAY_NUMBER = "com.andres.pushups.DAY_NUMBER";
+    private int mInhaleSecs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        mInhaleSecs = intent.getIntExtra(InhaleActivity.EXTRA_INHALE_SECS, -1);
 
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key),
-            Context.MODE_PRIVATE);
-        int savedWeek = prefs.getInt(getString(R.string.saved_week), -1);
-        int savedDay = prefs.getInt(getString(R.string.saved_day), -1);
-        if (savedWeek != -1 && savedDay != -1) {
-            Intent intent = new Intent(this, SummaryActivity.class);
-            intent.putExtra(EXTRA_WEEK_NUMBER, savedWeek);
-            intent.putExtra(EXTRA_DAY_NUMBER, savedDay);
-            startActivity(intent);
-        }
+        setContentView(R.layout.activity_picker);
 
-        setContentView(R.layout.activity_main);
-
+        ((TextView) findViewById(R.id.pickerTitle)).setText("hold");
         WearableListView listView = (WearableListView) findViewById(R.id.list);
         listView.setAdapter(new Adapter(this));
         listView.setClickListener(this);
@@ -42,9 +30,10 @@ public class MainActivity extends Activity implements WearableListView.ClickList
 
     @Override
     public void onClick(WearableListView.ViewHolder holder) {
-        Intent intent = new Intent(this, DayActivity.class);
-        int weekNumber = holder.getPosition() + 1;
-        intent.putExtra(EXTRA_WEEK_NUMBER, weekNumber);
+        Intent intent = new Intent(this, ExhaleActivity.class);
+        int holdSecs = holder.getPosition() * 2 + 2;
+        intent.putExtra(InhaleActivity.EXTRA_INHALE_SECS, mInhaleSecs);
+        intent.putExtra(InhaleActivity.EXTRA_HOLD_SECS, holdSecs);
         startActivity(intent);
     }
 
@@ -69,13 +58,13 @@ public class MainActivity extends Activity implements WearableListView.ClickList
         @Override
         public void onBindViewHolder(WearableListView.ViewHolder holder, int position) {
             TextView view = (TextView) holder.itemView.findViewById(R.id.name);
-            view.setText("week " + (position + 1));
+            view.setText(((position + 1) * 2) + " secs");
             holder.itemView.setTag(position);
         }
 
         @Override
         public int getItemCount() {
-            return 6;
+            return 30;
         }
     }
 }

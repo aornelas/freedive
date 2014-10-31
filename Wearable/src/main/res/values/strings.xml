@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">pushups</string>
-    <string name="preference_file_key">saved_pushups_state</string>
-    <string name="saved_week">saved_week</string>
-    <string name="saved_day">saved_day</string>
+    <string name="app_name">freedive</string>
+    <string name="preference_file_key">saved_freedive_state</string>
+    <string name="saved_inhale_secs">saved_inhale_secs</string>
+    <string name="saved_hold_secs">saved_hold_secs</string>
+    <string name="saved_exhale_secs">saved_exhale_secs</string>
 
     <string name="round_string">Your screen is round!</string>
     <string name="rect_string">Your screen is rectangular!</string>

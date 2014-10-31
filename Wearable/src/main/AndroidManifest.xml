@@ -10,7 +10,7 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.DeviceDefault">
         <activity
-            android:name="com.aornelas.wearable.freedive.MainActivity"
+            android:name=".InhaleActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -18,20 +18,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.aornelas.wearable.freedive.DayActivity"
+            android:name=".HoldActivity"
             android:label="@string/app_name"
-            android:parentActivityName="com.aornelas.wearable.freedive.MainActivity" >
+            android:parentActivityName=".InhaleActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.wearable.freedive.MainActivity" />
+                android:value="com.example.wearable.freedive.InhaleActivity" />
         </activity>
         <activity
-            android:name="com.aornelas.wearable.freedive.SummaryActivity"
+            android:name=".ExhaleActivity"
             android:label="@string/app_name"
-            android:parentActivityName="com.aornelas.wearable.freedive.DayActivity" >
+            android:parentActivityName=".HoldActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.wearable.freedive.DayActivity" />
+                android:value="com.example.wearable.freedive.HoldActivity" />
+        </activity>
+        <activity
+            android:name=".DiveActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".ExhaleActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.wearable.freedive.ExhaleActivity" />
         </activity>
     </application>
 

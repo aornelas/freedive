@@ -10,18 +10,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-public class DayActivity extends Activity implements WearableListView.ClickListener {
+public class ExhaleActivity extends Activity implements WearableListView.ClickListener {
 
-    private int mWeekNumber;
+    private int mInhaleSecs;
+    private int mHoldSecs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        mWeekNumber = intent.getIntExtra(MainActivity.EXTRA_WEEK_NUMBER, -1);
+        mInhaleSecs = intent.getIntExtra(InhaleActivity.EXTRA_INHALE_SECS, -1);
+        mHoldSecs = intent.getIntExtra(InhaleActivity.EXTRA_HOLD_SECS, -1);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_picker);
 
+        ((TextView) findViewById(R.id.pickerTitle)).setText("exhale");
         WearableListView listView = (WearableListView) findViewById(R.id.list);
         listView.setAdapter(new Adapter(this));
         listView.setClickListener(this);
@@ -29,10 +32,11 @@ public class DayActivity extends Activity implements WearableListView.ClickListe
 
     @Override
     public void onClick(WearableListView.ViewHolder holder) {
-        Intent intent = new Intent(this, SummaryActivity.class);
-        int dayNumber = holder.getPosition() + 1;
-        intent.putExtra(MainActivity.EXTRA_WEEK_NUMBER, mWeekNumber);
-        intent.putExtra(MainActivity.EXTRA_DAY_NUMBER, dayNumber);
+        Intent intent = new Intent(this, DiveActivity.class);
+        int exhaleSecs = holder.getPosition() + 1;
+        intent.putExtra(InhaleActivity.EXTRA_INHALE_SECS, mInhaleSecs);
+        intent.putExtra(InhaleActivity.EXTRA_HOLD_SECS, mHoldSecs);
+        intent.putExtra(InhaleActivity.EXTRA_EXHALE_SECS, exhaleSecs);
         startActivity(intent);
     }
 
@@ -57,13 +61,13 @@ public class DayActivity extends Activity implements WearableListView.ClickListe
         @Override
         public void onBindViewHolder(WearableListView.ViewHolder holder, int position) {
             TextView view = (TextView) holder.itemView.findViewById(R.id.name);
-            view.setText("day " + (position + 1));
+            view.setText((position + 1) + " secs");
             holder.itemView.setTag(position);
         }
 
         @Override
         public int getItemCount() {
-            return 3;
+            return 30;
         }
     }
 }
