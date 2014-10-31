@@ -1,4 +1,4 @@
-package com.aornelas.wearable.pushups;
+package com.aornelas.wearable.freedive;
 
 import android.app.Activity;
 import android.content.Context;
