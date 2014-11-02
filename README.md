@@ -1,10 +1,16 @@
-pushups
+freedive
 =======
 
-Android Wearable app to aid in the 6-week 100 pushups challenge
+Android Wearable app to help you train your breath for free diving. You choose the durations of inhaling, holding and exhaling and the app shows you a looping timer for the cycle.
 
-![Day Picker](https://github.com/aornelas/pushups/raw/master/screenshots/v1/days.png)
+![inhale picker](https://github.com/aornelas/freedive/raw/master/screenshots/v1/inhale_picker.png)
 
-![Week Picker](https://github.com/aornelas/pushups/raw/master/screenshots/v1/weeks.png)
+![hold picker](https://github.com/aornelas/freedive/raw/master/screenshots/v1/hold_picker.png)
 
-![Summary](https://github.com/aornelas/pushups/raw/master/screenshots/v1/summary.png)
+![exhale picker](https://github.com/aornelas/freedive/raw/master/screenshots/v1/exhale_picker.png)
+
+![inhale](https://github.com/aornelas/freedive/raw/master/screenshots/v1/inhale.png)
+
+![hold](https://github.com/aornelas/freedive/raw/master/screenshots/v1/hold.png)
+
+![exhale](https://github.com/aornelas/freedive/raw/master/screenshots/v1/exhale.png)
